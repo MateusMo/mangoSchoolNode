@@ -5,7 +5,7 @@ const userRepository = require('../repositories/userRepository');
 const userService = {
     async createUser(userData) {
         if (!isValidPassword(userData.password)) {
-            throw new Error('A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e caracteres especiais.');
+        return false;    
         }
         return userRepository.post(userData);
     },

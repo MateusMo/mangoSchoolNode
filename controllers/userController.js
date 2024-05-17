@@ -1,15 +1,22 @@
 // user.controller.js
-
+const { messages } = require('../utils/messages');
 const userService = require('../services/userService');
 
 const userController = {
     async createUser(req, res) {
         const isCreated = await userService.createUser(req.body);
-        if(!isCreated){
-
+        if (!isCreated) {
+            console.log(messages[2])
+            return res.status(201).render('adminContext/userForm', {
+                message: messages[2],
+                class: 'alert alert-danger'
+            });
         }
 
-        res.status(201).render('adminContext/adminPanel');
+        return res.status(201).render('adminContext/adminPanel', {
+            message: messages[1],
+            class: 'alert alert-success'
+        });
     },
 
     async updateUser(req, res) {
