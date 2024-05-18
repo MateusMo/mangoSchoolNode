@@ -12,7 +12,7 @@ const userController = {
                 class: 'alert alert-danger'
             });
         }
-
+        
         return res.status(201).render('adminContext/adminPanel', {
             message: messages[1],
             class: 'alert alert-success'

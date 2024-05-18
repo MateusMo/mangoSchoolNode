@@ -11,7 +11,7 @@ const post = async (req, res) => {
         if (!response) {
 
         }
-
+        
         res.render('adminContext/adminPanel');
     } catch (error) {
 

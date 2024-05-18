@@ -1,3 +1,11 @@
 {{#if message}}
-    <label class="{{class}}">{{message}}</label>
+    <label id="messageLabel" class="{{class}}">{{message}}</label>
+    <script>
+        setTimeout(function() {
+            var messageLabel = document.getElementById('messageLabel');
+            if (messageLabel) {
+                messageLabel.style.display = 'none';
+            }
+        }, 5000); 
+    </script>
 {{/if}}

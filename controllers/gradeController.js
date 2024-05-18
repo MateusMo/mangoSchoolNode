@@ -1,11 +1,22 @@
 // grade.controller.js
 
 const gradeService = require('../services/gradeService');
+const { messages } = require('../utils/messages');
 
 const gradeController = {
     async createGrade(req, res) {
-        const newGrade = await gradeService.createGrade(req.body);
-        res.status(201).json(newGrade);
+        try {
+            await gradeService.createGrade(req.body);
+            res.render('adminContext/newGradeForm', {
+                message: messages[4],
+                class: 'alert alert-success'
+            });
+        } catch (error) {
+            res.render('adminContext/newGradeForm', {
+                message: messages[5],
+                class: 'alert alert-danger'  // Corrigido para alertar erro
+            });
+        }
     },
 
     async updateGrade(req, res) {
@@ -22,7 +33,9 @@ const gradeController = {
 
     async getGrades(req, res) {
         const grades = await gradeService.getGrades();
-        res.json(grades);
+        res.render('adminContext/grade',{
+            grades:grades
+        });
     }
 };
 
