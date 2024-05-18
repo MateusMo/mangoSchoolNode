@@ -42,9 +42,13 @@
                             <div class="form-floating mb-3">
                                 <button class="btn btn-primary btn-lg w-100" id="submitButton"
                                     type="submit">Create</button>
-
                             </div>
+                            
                         </form>
+                        <div class="form-floating mb-3">
+                                <button class="btn btn-primary btn-lg w-100" id="comeBackButton"
+                                    >Admin Panel</button>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -54,3 +58,12 @@
 </body>
 
 </html>
+
+<script>
+    const comeBackButton = document.getElementById("comeBackButton");
+
+    comeBackButton.addEventListener("click", function() {
+        window.location.href = "/adminPanel";
+    });
+    
+</script>

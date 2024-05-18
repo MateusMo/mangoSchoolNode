@@ -28,7 +28,10 @@ const gradeController = {
     async deleteGrade(req, res) {
         const { id } = req.params;
         await gradeService.deleteGrade(id);
-        res.status(204).end();
+        const grades = await gradeService.getGrades();
+        res.render('adminContext/grade',{
+            grades:grades
+        });
     },
 
     async getGrades(req, res) {

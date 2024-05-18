@@ -13,9 +13,51 @@
                     <p class="lead fw-normal text-muted mb-0">Welcome back teacher</p>
                 </div>
                 <div class="row gx-5 justify-content-center">
-                    <div class="col-lg-8 col-xl-6">
-                        <div id="grades">
-                            {{grades}}
+                    <div class="col-lg-8 col-xl-12">
+                        <div id="grades" class="w-100 table-responsive">
+                            <table class="table table-responsive table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Student Name</th>
+                                        <th scope="col">Subject Name</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Arith</th>
+                                        <th scope="col">Kus</th>
+                                        <th scope="col">He</th>
+                                        <th scope="col">Sa</th>
+                                        <th scope="col">Writ</th>
+                                        <th scope="col">Read</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Ave</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each grades}}
+                                    <tr>
+                                        <td>{{studentName}}</td>
+                                        <td>{{subjectName}}</td>
+                                        <td>{{date}}</td>
+                                        <td>{{arith}}</td>
+                                        <td>{{kus}}</td>
+                                        <td>{{he}}</td>
+                                        <td>{{sa}}</td>
+                                        <td>{{writ}}</td>
+                                        <td>{{read}}</td>
+                                        <td>{{total}}</td>
+                                        <td>{{ave}}</td>
+                                        <td>
+                                            <button onclick="deleteGrade('{{id}}')"
+                                                class="btn btn-danger btn-lg w-100">Delete</button>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                            <br>
+                            <div class="form-floating mb-3 mt-3">
+                                <button class="btn btn-primary btn-lg w-100" id="comeBackButton">Admin Panel</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -26,3 +68,28 @@
 </body>
 
 </html>
+
+<script>
+    function deleteGrade(id) {
+        fetch('/grade/' + id, {
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (response.ok) {
+                    location.reload();
+                } else {
+                    console.error('Error deleting grade:', response.statusText);
+                }
+            })
+            .catch(error => {
+                console.error('Network error while deleting grade:', error);
+            });
+    }
+
+    const comeBackButton = document.getElementById("comeBackButton");
+
+    comeBackButton.addEventListener("click", function () {
+        window.location.href = "/adminPanel";
+    });
+
+</script>

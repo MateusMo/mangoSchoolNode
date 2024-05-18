@@ -46,6 +46,8 @@ app.get('/login', (req, res) => {
     }
     res.render('login')
 });
+
+//Rotas restritas, tratar futuramente
 app.get('/userForm', (req, res) => {
     res.render('adminContext/userForm')
 });
@@ -54,10 +56,14 @@ app.get('/newGradeForm', (req, res) => {
     res.render('adminContext/newGradeForm')
 });
 
+app.get('/adminPanel', (req, res) => {
+    res.render('adminContext/adminPanel')
+});
+
 // Roteador dinâmico
 app.use('/access', loginRouter);
 app.use('/user', userRouter);
-app.use('/grade', gradeRouter);
+app.use('/grade', gradeRouter); 
 
 
 app.listen(port, () => {
