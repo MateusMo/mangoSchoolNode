@@ -1,17 +1,24 @@
 <!-- Footer-->
-    <footer class="bg-dark py-4 mt-auto">
-        <div class="container px-5">
-            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                <div class="col-auto">
-                    <div class="small m-0 text-white">Copyright &copy; MangoSchool 2024</div>
-                </div>
-                <div class="col-auto">
-                    <a class="link-light small" href="#!">Instagram</a>
-                    <span class="text-white mx-1">&middot;</span>
-                    <a class="link-light small" href="#!">Facebook</a>
-                    <span class="text-white mx-1">&middot;</span>
-                    <a class="link-light small" href="/contact">Contact</a>
-                </div>
+<footer class="bg-dark py-4 mt-auto">
+    <div class="container px-5">
+        <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+            <div class="col-auto">
+                <div id="year" class="small m-0 text-white">Copyright &copy; MangoSchool 
+                <!-- Este span será preenchido com o ano atual usando JavaScript --></div>
+            </div>
+            <div class="col-auto">
+                <a class="link-light small" href="#!">Instagram</a>
+                <span class="text-white mx-1">&middot;</span>
+                <a class="link-light small" href="#!">Facebook</a>
+                <span class="text-white mx-1">&middot;</span>
+                <a class="link-light small" href="/contact">Contact</a>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
+
+<script>
+    const yearElement = document.getElementById('year');
+    const currentYear = new Date().getFullYear();
+    yearElement.textContent += currentYear;
+</script>
