@@ -1,4 +1,5 @@
 const loginService = require('../services/loginService');
+const userService = require('../services/userService')
 
 const post = async (req, res) => {
     const { email, password } = req.body;
@@ -11,7 +12,8 @@ const post = async (req, res) => {
         if (!response) {
 
         }
-        
+        const user = await userService.findUserByEmail(email);
+        req.session.user = user;
         res.render('adminContext/adminPanel');
     } catch (error) {
 

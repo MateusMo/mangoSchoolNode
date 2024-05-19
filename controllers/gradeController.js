@@ -28,7 +28,9 @@ const gradeController = {
     async deleteGrade(req, res) {
         const { id } = req.params;
         await gradeService.deleteGrade(id);
-        const grades = await gradeService.getGrades();
+        const page = parseInt(req.query.page) || 1;
+        const limit = 50;
+        const grades = await gradeService.getGrades(page, limit);
         res.render('adminContext/grade',{
             grades:grades
         });
@@ -38,11 +40,14 @@ const gradeController = {
         const page = parseInt(req.query.page) || 1;
         const limit = 50;
         const { grades, totalPages } = await gradeService.getGrades(page, limit);
-        res.render('adminContext/grade', {
-            grades: grades,
-            currentPage: page,
-            totalPages: totalPages
-        });
+        const user = req.session.user;
+        if (user) {
+            res.render('adminContext/grade', {
+                grades: grades,
+                currentPage: page,
+                totalPages: totalPages
+            });
+        }
     }
 };
 

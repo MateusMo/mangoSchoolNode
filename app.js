@@ -6,6 +6,7 @@ const session = require('express-session');
 const handlebars = require('express-handlebars');
 const userRouter = require('./routers/userRouter');
 const gradeRouter = require('./routers/gradeRouter');
+const publicGradeRouter = require('./routers/publicGradeRouter')
 const loginRouter = require('./routers/loginRouter');
 
 //Configuração Handlebars
@@ -74,7 +75,7 @@ app.get('/contact', (req, res) => {
 app.get('/login', (req, res) => {
     const user = req.session.user;
     if (user) {
-        res.render('adminPanel')
+        res.render('adminContext/adminPanel')
     }
     res.render('login')
 });
@@ -96,6 +97,7 @@ app.get('/adminPanel', (req, res) => {
 app.use('/access', loginRouter);
 app.use('/user', userRouter);
 app.use('/grade', gradeRouter);
+app.use('/publicGrade',publicGradeRouter);
 
 
 app.listen(port, () => {

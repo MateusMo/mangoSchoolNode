@@ -23,7 +23,14 @@ const userService = {
 
     async getUsers() {
         return userRepository.getUsers();
+    },
+
+    async findUserByEmail(email) {
+        const user = await userRepository.findByEmail(email);
+        return user ? user.dataValues : null;
     }
+
+    
 };
 
 // Função para validar a força da senha

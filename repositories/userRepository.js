@@ -53,4 +53,14 @@ const getUsers = async (req, res) => {
     }
 }
 
-module.exports = { get, post, put, deleteUser, getUsers };
+const findByEmail = async (email) => {
+    try {
+        const user = await User.findOne({ where: { email } });
+        return user;
+    } catch (error) {
+        console.error('Error finding user by email:', error);
+        return null;
+    }
+}
+
+module.exports = { get, post, put, deleteUser, getUsers,findByEmail };

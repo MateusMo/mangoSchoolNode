@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<main class="flex-shrink-0">
+    <!-- Page content-->
+    <section class="py-5">
+        <div class="container px-5">
+            <!-- Contact form-->
+            <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+                <div class="text-center mb-5">
+                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i>
+                    </div>
+                    <h1 class="fw-bolder">Grades</h1>
+                    <p class="lead fw-normal text-muted mb-0">Our student's grades</p>
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-12">
+                        <div id="grades" class="w-100 table-responsive">
+                            <table class="table table-responsive table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Student Name</th>
+                                        <th scope="col">Subject Name</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Arith</th>
+                                        <th scope="col">Kus</th>
+                                        <th scope="col">He</th>
+                                        <th scope="col">Sa</th>
+                                        <th scope="col">Writ</th>
+                                        <th scope="col">Read</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Ave</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each grades}}
+                                    <tr>
+                                        <td>{{studentName}}</td>
+                                        <td>{{subjectName}}</td>
+                                        <td>{{date}}</td>
+                                        <td>{{arith}}</td>
+                                        <td>{{kus}}</td>
+                                        <td>{{he}}</td>
+                                        <td>{{sa}}</td>
+                                        <td>{{writ}}</td>
+                                        <td>{{read}}</td>
+                                        <td>{{total}}</td>
+                                        <td>{{ave}}</td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                            <br>
+                            <div class="pagination">
+                                {{#if (gt currentPage 1)}}
+                                <a href="?page={{subtract currentPage 1}}" class="btn btn-primary mr-1">Previous</a>
+                                {{/if}}
+
+                                <!-- Exibir 2 links antes da página atual -->
+                                {{#each (range (max (subtract currentPage 2) 1) (min (subtract currentPage 1)
+                                totalPages))}}
+                                <a href="?page={{this}}" class="btn btn-primary mr-2">{{this}}</a>
+                                {{/each}}
+
+                                <!-- Exibir a página atual -->
+                                <a href="?page={{currentPage}}" class="btn btn-primary active mr-2">{{currentPage}}</a>
+
+                                <!-- Exibir 2 links depois da página atual -->
+                                {{#each (range (max (add currentPage 1) 1) (min (add currentPage 2) totalPages))}}
+                                <a href="?page={{this}}" class="btn btn-primary mr-2">{{this}}</a>
+                                {{/each}}
+
+                                {{#if (lt currentPage totalPages)}}
+                                <a href="?page={{add currentPage 1}}" class="btn btn-primary">Next</a>
+                                {{/if}}
+                            </div>
+
+                            <br>
+                            <div class="form-floating mb-3 mt-3">
+                                <button class="btn btn-primary btn-lg w-100" id="comeBackButton">Admin Panel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+
+</html>
+
+<script>
+    function deleteGrade(id) {
+        fetch('/grade/' + id, {
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (response.ok) {
+                    location.reload();
+                } else {
+                    console.error('Error deleting grade:', response.statusText);
+                }
+            })
+            .catch(error => {
+                console.error('Network error while deleting grade:', error);
+            });
+    }
+
+    const comeBackButton = document.getElementById("comeBackButton");
+
+    comeBackButton.addEventListener("click", function () {
+        window.location.href = "/adminPanel";
+    });
+
+</script>
