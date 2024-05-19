@@ -8,6 +8,7 @@ const userRouter = require('./routers/userRouter');
 const gradeRouter = require('./routers/gradeRouter');
 const publicGradeRouter = require('./routers/publicGradeRouter')
 const loginRouter = require('./routers/loginRouter');
+const contactRouter = require('./routers/contactRouter');
 
 //Configuração Handlebars
 app.set('view engine', 'hbs');
@@ -98,6 +99,7 @@ app.use('/access', loginRouter);
 app.use('/user', userRouter);
 app.use('/grade', gradeRouter);
 app.use('/publicGrade',publicGradeRouter);
+app.use('/contact',contactRouter);
 
 
 app.listen(port, () => {
