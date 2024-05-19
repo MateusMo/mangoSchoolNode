@@ -16,19 +16,24 @@ const gradeService = {
         return gradeRepository.delete(id);
     },
 
-    async getGrades() {
-        const grades = await gradeRepository.findAll();
-        const gradeDataValues = grades.map(grade => {
+    async getGrades(page, limit) {
+        const offset = (page - 1) * limit;
+        const { grades, count } = await gradeRepository.findAllWithPagination(limit, offset);
+
+        const formattedGrades = grades.map(grade => {
             let dataValue = grade.dataValues;
             dataValue.date = moment(dataValue.date).format('MM/DD/YYYY');
             return dataValue;
         });
-        gradeDataValues.sort((a, b) => {
+
+        formattedGrades.sort((a, b) => {
             const dateA = moment(a.date, 'MM/DD/YYYY');
             const dateB = moment(b.date, 'MM/DD/YYYY');
             return dateB - dateA; 
         });
-        return gradeDataValues;
+
+        const totalPages = Math.ceil(count / limit);
+        return { grades: formattedGrades, totalPages: totalPages };
     }
 };
 

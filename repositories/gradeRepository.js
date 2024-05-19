@@ -15,8 +15,12 @@ const gradeRepository = {
         return Grade.destroy({ where: { id } });
     },
 
-    async findAll() {
-        return Grade.findAll();
+    async findAllWithPagination(limit, offset) {
+        const { rows: grades, count } = await Grade.findAndCountAll({
+            limit: limit,
+            offset: offset
+        });
+        return { grades, count };
     }
 };
 

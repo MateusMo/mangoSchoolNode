@@ -35,9 +35,13 @@ const gradeController = {
     },
 
     async getGrades(req, res) {
-        const grades = await gradeService.getGrades();
-        res.render('adminContext/grade',{
-            grades:grades
+        const page = parseInt(req.query.page) || 1;
+        const limit = 50;
+        const { grades, totalPages } = await gradeService.getGrades(page, limit);
+        res.render('adminContext/grade', {
+            grades: grades,
+            currentPage: page,
+            totalPages: totalPages
         });
     }
 };

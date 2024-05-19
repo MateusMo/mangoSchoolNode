@@ -55,6 +55,31 @@
                                 </tbody>
                             </table>
                             <br>
+                            <div class="pagination">
+                                {{#if (gt currentPage 1)}}
+                                <a href="?page={{subtract currentPage 1}}" class="btn btn-primary">Anterior</a>
+                                {{/if}}
+
+                                <!-- Exibir 2 links antes da página atual -->
+                                {{#each (range (max (subtract currentPage 2) 1) (min (subtract currentPage 1)
+                                totalPages))}}
+                                <a href="?page={{this}}" class="btn btn-primary">{{this}}</a>
+                                {{/each}}
+
+                                <!-- Exibir a página atual -->
+                                <a href="?page={{currentPage}}" class="btn btn-primary active">{{currentPage}}</a>
+
+                                <!-- Exibir 2 links depois da página atual -->
+                                {{#each (range (max (add currentPage 1) 1) (min (add currentPage 2) totalPages))}}
+                                <a href="?page={{this}}" class="btn btn-primary">{{this}}</a>
+                                {{/each}}
+
+                                {{#if (lt currentPage totalPages)}}
+                                <a href="?page={{add currentPage 1}}" class="btn btn-primary">Próximo</a>
+                                {{/if}}
+                            </div>
+
+                            <br>
                             <div class="form-floating mb-3 mt-3">
                                 <button class="btn btn-primary btn-lg w-100" id="comeBackButton">Admin Panel</button>
                             </div>

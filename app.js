@@ -14,7 +14,39 @@ app.engine('hbs', handlebars.engine({
     layoutsDir: __dirname + '/views/layouts',
     extname: 'hbs',
     defaultLayout: 'main',
+    helpers: {
+        subtract: function (a, b) {
+            return a - b;
+        },
+        add: function (a, b) {
+            return a + b;
+        },
+        range: function (start, end) {
+            const range = [];
+            for (let i = start; i <= end; i++) {
+                range.push(i);
+            }
+            return range;
+        },
+        eq: function (a, b) {
+            return a === b;
+        },
+        gt: function (a, b) {
+            return a > b;
+        },
+        lt: function (a, b) {
+            return a < b;
+        },
+        max: function(a, b) {
+            return Math.max(a, b);
+        },
+        min: function(a, b) {
+            return Math.min(a, b);
+        }
+    }
 }));
+
+
 app.use(express.static('public'));
 //Configuração bodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -63,7 +95,7 @@ app.get('/adminPanel', (req, res) => {
 // Roteador dinâmico
 app.use('/access', loginRouter);
 app.use('/user', userRouter);
-app.use('/grade', gradeRouter); 
+app.use('/grade', gradeRouter);
 
 
 app.listen(port, () => {
