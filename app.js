@@ -113,6 +113,10 @@ app.use('/grade', authMiddleware, gradeRouter);
 app.use('/contactAd', authMiddleware, contactRouter);
 app.use('/logout', authMiddleware, logoutRouter);
 
+app.use((req, res, next) => {
+    res.status(404).render('notFound');
+});
+
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
