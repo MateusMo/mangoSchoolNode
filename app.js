@@ -10,6 +10,7 @@ const publicGradeRouter = require('./routers/publicGradeRouter')
 const loginRouter = require('./routers/loginRouter');
 const contactRouter = require('./routers/contactRouter');
 const logoutRouter = require('./routers/logoutRouter');
+const { phrases } = require("./utils/phrases")
 
 //Configuração Handlebars
 app.set('view engine', 'hbs');
@@ -73,7 +74,19 @@ app.get('/', (req, res) => {
     res.render('home')
 });
 app.get('/photos', (req, res) => {
-    res.render('photos', { times: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30] })
+    const photosData = {
+        times: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+        phrasesData: []
+    };
+    
+    photosData.times.forEach(position => {
+        photosData.phrasesData.push({
+            position: position,
+            phrase: phrases[position]
+        });
+    });
+    
+    res.render('photos', { photosData:photosData })
 });
 
 app.use('/publicGrade', publicGradeRouter);
@@ -98,14 +111,13 @@ function authMiddleware(req, res, next) {
 app.get('/userForm', authMiddleware,(req, res) => {
     res.render('adminContext/userForm')
 });
-
 app.get('/newGradeForm',authMiddleware,(req, res) => {
     res.render('adminContext/newGradeForm')
 });
-
 app.get('/adminPanel',authMiddleware,(req, res) => {
     res.render('adminContext/adminPanel')
 });
+
 // Roteador dinâmico com middleware de autenticação
 app.use('/access', authMiddleware, loginRouter);
 app.use('/user', authMiddleware, userRouter);
