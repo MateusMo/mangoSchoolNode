@@ -14,8 +14,13 @@ const contactService = {
         return contactsMapped;
     },
 
-    async delete(id){
-        return await contactRepository.delete(id);
+    async delete(id) {
+        try {
+            return await contactRepository.delete(id);
+        } catch (error) {
+            console.error("Error in delete service:", error); 
+            throw error; 
+        }
     }
 }
 

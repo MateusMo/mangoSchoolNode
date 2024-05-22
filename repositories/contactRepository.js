@@ -12,11 +12,14 @@ const contactRepository = {
     },
 
     async delete(id) {
-        return await Contacts.destroy({
-            where: {
-                id: id
-            }
-        });
+        try {
+            return await Contacts.destroy({
+                where: { id: id }
+            });
+        } catch (error) {
+            console.error("Error in delete repository:", error); // Log the error
+            throw error; // Rethrow the error to be caught by the service
+        }
     }
 }
 

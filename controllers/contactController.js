@@ -25,14 +25,15 @@ const contactController = {
         }
     },
 
-    async delete(req,res){
+    async delete(req, res) {
         try {
-            const id = req.body;
-            await contactService.delete(id)
+            const { id } = req.params; 
+            await contactService.delete(id);
             const contacts = await contactService.get();
-            return res.render('adminContext/contact',{contacts:contacts});
+            return res.render('adminContext/contact', { contacts: contacts });
         } catch (error) {
-            
+            console.error("Error in delete controller:", error); 
+            return res.status(500).send("Internal Server Error"); 
         }
     }
 };
