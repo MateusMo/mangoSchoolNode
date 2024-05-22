@@ -31,8 +31,8 @@ const gradeController = {
         const page = parseInt(req.query.page) || 1;
         const limit = 50;
         const grades = await gradeService.getGrades(page, limit);
-        res.render('adminContext/grade',{
-            grades:grades
+        res.render('adminContext/grade', {
+            grades: grades
         });
     },
 
@@ -40,14 +40,11 @@ const gradeController = {
         const page = parseInt(req.query.page) || 1;
         const limit = 50;
         const { grades, totalPages } = await gradeService.getGrades(page, limit);
-        const user = req.session.user;
-        if (user) {
-            res.render('adminContext/grade', {
-                grades: grades,
-                currentPage: page,
-                totalPages: totalPages
-            });
-        }
+        res.render('adminContext/grade', {
+            grades: grades,
+            currentPage: page,
+            totalPages: totalPages
+        });
     }
 };
 

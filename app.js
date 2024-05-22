@@ -9,6 +9,7 @@ const gradeRouter = require('./routers/gradeRouter');
 const publicGradeRouter = require('./routers/publicGradeRouter')
 const loginRouter = require('./routers/loginRouter');
 const contactRouter = require('./routers/contactRouter');
+const logoutRouter = require('./routers/logoutRouter');
 
 //Configuração Handlebars
 app.set('view engine', 'hbs');
@@ -39,10 +40,10 @@ app.engine('hbs', handlebars.engine({
         lt: function (a, b) {
             return a < b;
         },
-        max: function(a, b) {
+        max: function (a, b) {
             return Math.max(a, b);
         },
-        min: function(a, b) {
+        min: function (a, b) {
             return Math.min(a, b);
         }
     }
@@ -94,12 +95,15 @@ app.get('/adminPanel', (req, res) => {
     res.render('adminContext/adminPanel')
 });
 
+
 // Roteador dinâmico
 app.use('/access', loginRouter);
 app.use('/user', userRouter);
 app.use('/grade', gradeRouter);
-app.use('/publicGrade',publicGradeRouter);
-app.use('/contact',contactRouter);
+app.use('/publicGrade', publicGradeRouter);
+app.use('/contactAd', contactRouter);
+app.use('/logout', logoutRouter);
+
 
 
 app.listen(port, () => {

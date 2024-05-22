@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<main class="flex-shrink-0">
+    <!-- Page content-->
+    <section class="py-5">
+        <div class="container px-5">
+            <!-- Contact form-->
+            <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+                <div class="text-center mb-5">
+                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i>
+                    </div>
+                    <h1 class="fw-bolder">Contact</h1>
+                    <p class="lead fw-normal text-muted mb-0">The contact messages:</p>
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-12">
+                        <div id="grades" class="w-100 table-responsive">
+                            <table class="table table-responsive table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Message</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each contacts}}
+                                    <tr>
+                                        <td>{{name}}</td>
+                                        <td>{{email}}</td>
+                                        <td>{{phone}}</td>
+                                        <td>{{message}}</td>
+                                        <td>
+                                            <button onclick="deleteContact('{{id}}')"
+                                                class="btn btn-danger btn-lg w-100">Delete</button>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                            <br>
+                            <div class="form-floating mb-3 mt-3">
+                                <button class="btn btn-primary btn-lg w-100" id="comeBackButton">Admin Panel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+
+</html>
+
+<script>
+    function deleteContact(id) {
+        fetch('/contactAd/' + id, {
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (response.ok) {
+                    location.reload();
+                } else {
+                    console.error('Error deleting grade:', response.statusText);
+                }
+            })
+            .catch(error => {
+                console.error('Network error while deleting grade:', error);
+            });
+    }
+
+    const comeBackButton = document.getElementById("comeBackButton");
+
+    comeBackButton.addEventListener("click", function () {
+        window.location.href = "/adminPanel";
+    });
+
+</script>

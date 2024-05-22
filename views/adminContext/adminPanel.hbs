@@ -29,11 +29,11 @@
                                     href="/adminGrades">Grades</button>
                             </div>
                             <div class="form-floating mb-3">
-                                <button class="btn btn-primary btn-lg w-100" id="submitButton"
+                                <button class="btn btn-primary btn-lg w-100" id="contact"
                                     href="">Contact Messages</button>
                             </div>
                             <div class="form-floating mb-3">
-                                <button class="btn btn-primary btn-lg w-100" id="submitButton"
+                                <button class="btn btn-primary btn-lg w-100" id="logoutButton"
                                     href="">Logout</button>
                             </div>
                         </div>
@@ -51,7 +51,8 @@
     const newUserButton = document.getElementById("newUserButton");
     const newGradeButton = document.getElementById("newGradeButton")
     const adminGrades = document.getElementById("adminGrades");
-
+    const contact = document.getElementById("contact");
+    const logoutButton = document.getElementById("logoutButton");
     newUserButton.addEventListener("click", function() {
         window.location.href = "/userForm";
     });
@@ -63,4 +64,12 @@
     adminGrades.addEventListener("click",()=>{
         window.location.href = "/grade";
     });
+
+    contact.addEventListener("click",()=>{
+        window.location.href = "/contactAd"
+    });
+
+    logoutButton.addEventListener("click",()=>{
+        window.location.href = "/logout"
+    })
 </script>
