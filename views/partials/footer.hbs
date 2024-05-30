@@ -7,9 +7,9 @@
                 <!-- Este span será preenchido com o ano atual usando JavaScript --></div>
             </div>
             <div class="col-auto">
-                <a class="link-light small" href="#!">Instagram</a>
+                <a class="link-light small" href="#!" onclick="navigateToSocialMedia(1)">Instagram</a>
                 <span class="text-white mx-1">&middot;</span>
-                <a class="link-light small" href="#!">Facebook</a>
+                <a class="link-light small" href="#!" onclick="navigateToSocialMedia(2)">Facebook</a>
                 <span class="text-white mx-1">&middot;</span>
                 <a class="link-light small" href="/contact">Contact</a>
             </div>
@@ -21,4 +21,21 @@
     const yearElement = document.getElementById('year');
     const currentYear = new Date().getFullYear();
     yearElement.textContent += currentYear;
+    function navigateToSocialMedia(number) {
+    let url;
+    
+    if (number == 1) {
+        url = "https://www.instagram.com/mango_school/?igshid=MzNlNGNkZWQ4Mg%3D%3D";
+    }
+    
+    if (number == 2) {
+        url = "https://www.facebook.com/MangoEnglishMediumSchool?mibextid=ZbWKwL";
+    }
+    
+    if (url) {
+        window.open(url, "_blank");
+    } else {
+        console.log("Invalid number provided. Please use 1 for Instagram or 2 for Facebook.");
+    }
+}
 </script>

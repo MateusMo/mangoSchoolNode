@@ -85,22 +85,6 @@
 </html>
 
 <script>
-    function deleteGrade(id) {
-        fetch('/grade/' + id, {
-            method: 'DELETE'
-        })
-            .then(response => {
-                if (response.ok) {
-                    location.reload();
-                } else {
-                    console.error('Error deleting grade:', response.statusText);
-                }
-            })
-            .catch(error => {
-                console.error('Network error while deleting grade:', error);
-            });
-    }
-
     const comeBackButton = document.getElementById("comeBackButton");
 
     comeBackButton.addEventListener("click", function () {

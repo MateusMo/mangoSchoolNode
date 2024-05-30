@@ -18,7 +18,8 @@ const gradeRepository = {
     async findAllWithPagination(limit, offset) {
         const { rows: grades, count } = await Grade.findAndCountAll({
             limit: limit,
-            offset: offset
+            offset: offset,
+            order: [['date', 'DESC']]
         });
         return { grades, count };
     }

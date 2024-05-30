@@ -10,6 +10,8 @@ const publicGradeRouter = require('./routers/publicGradeRouter')
 const loginRouter = require('./routers/loginRouter');
 const contactRouter = require('./routers/contactRouter');
 const logoutRouter = require('./routers/logoutRouter');
+const volunteerRouter = require('./routers/volunteerRouter');
+const publicVolunteerRouter = require('./routers/publicVolunteerRouter');
 const { phrases } = require("./utils/phrases")
 
 //Configuração Handlebars
@@ -90,13 +92,14 @@ app.get('/photos', (req, res) => {
 });
 
 app.use('/publicGrade', publicGradeRouter);
-
+app.use('/publicVolunteer',publicVolunteerRouter);
 app.get('/contact', (req, res) => {
     res.render('contact')
 });
 
-
-
+app.get('/volunteer', (req, res) => {
+    res.render('volunteer')
+});
 
 // Middleware de autenticação
 function authMiddleware(req, res, next) {
@@ -119,9 +122,10 @@ app.get('/adminPanel',authMiddleware,(req, res) => {
 });
 
 // Roteador dinâmico com middleware de autenticação
-app.use('/access', authMiddleware, loginRouter);
-app.use('/user', authMiddleware, userRouter);
+app.use('/access', loginRouter);
+app.use('/volunteerAd',authMiddleware,volunteerRouter);
 app.use('/grade', authMiddleware, gradeRouter);
+app.use('/user', authMiddleware, userRouter);
 app.use('/contactAd', authMiddleware, contactRouter);
 app.use('/logout', authMiddleware, logoutRouter);
 

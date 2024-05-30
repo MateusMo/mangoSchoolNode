@@ -20,7 +20,7 @@ const gradeController = {
     },
 
     async updateGrade(req, res) {
-        const { id } = req.params;
+        const { id } = req.params;''
         const updatedGrade = await gradeService.updateGrade(id, req.body);
         res.json(updatedGrade);
     },

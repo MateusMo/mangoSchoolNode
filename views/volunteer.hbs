@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<main class="flex-shrink-0">
+    <!-- Page content-->
+    <section class="py-5">
+        <div class="container px-5">
+            <!-- Contact form-->
+            <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+                <div class="text-center mb-5">
+                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i>
+                    </div>
+                    <h1 class="fw-bolder">Be a volunteer</h1>
+                    <p class="lead fw-normal text-muted mb-0">We'd love to have you in our team</p>
+                    {{> message message=message}}
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6">
+                        <form id="contactForm" action="/publicVolunteer" method="POST" novalidate>
+                            <!-- Name input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="firstName" name="firstName" type="text " required
+                                    placeholder="First Name" data-sb-validations="required" />
+                                <label for="firstName">First Name</label>
+                                <div class="invalid-feedback" data-sb-feedback="firstName:required">A name is required.
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="lastName" name="lastName" type="text"
+                                    placeholder="Last Name" data-sb-validations="required" />
+                                <label for="lastName">Last Name</label>
+                                <div class="invalid-feedback" data-sb-feedback="lastName:required">A name is required.
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="parentFirstName" name="parentFirstName" type="text"
+                                    placeholder="Parent's FirstName" data-sb-validations="required" />
+                                <label for="">Parent's first name</label>
+                                <div class="invalid-feedback" data-sb-feedback="parentFirstName:required">A name is
+                                    required.</div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="parentLastName" name="parentLastName" type="text"
+                                    placeholder="Parent's last name" data-sb-validations="required" />
+                                <label for="">Parent's last name</label>
+                                <div class="invalid-feedback" data-sb-feedback="parentLastName:required">A name is
+                                    required.</div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="email" name="email" type="text" placeholder="Email"
+                                    data-sb-validations="required" />
+                                <label for="">Email</label>
+                                <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="phone" name="phone" type="text"
+                                    placeholder="Phone with area code" data-sb-validations="required" />
+                                <label for="phone">Phone</label>
+                                <div class="invalid-feedback" data-sb-feedback="phone:required">A phone is required.
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="birthDate" name="birthDate" type="date"
+                                    placeholder="Birth Date" data-sb-validations="required" />
+                                <label for="">Birth Date</label>
+                                <div class="invalid-feedback" data-sb-feedback="birthDate:required">A birth date is
+                                    required.
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select class="form-control" id="educationLevel" name="educationLevel"
+                                    data-sb-validations="required">
+                                    <option value="" disabled selected>Select Education Level</option>
+                                    <option value="primary">Primary Education</option>
+                                    <option value="secondary">Secondary Education</option>
+                                    <option value="higher_secondary">Higher Secondary Education</option>
+                                    <option value="undergraduate">Undergraduate</option>
+                                    <option value="postgraduate">Postgraduate</option>
+                                    <option value="doctorate">Doctorate</option>
+                                    <option value="vocational">Vocational Training</option>
+                                    <option value="professional_certification">Professional Certification</option>
+                                </select>
+                                <label for="educationLevel">Education Level</label>
+                                <div class="invalid-feedback" data-sb-feedback="educationLevel:required">An education
+                                    level is required.</div>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="schoolName" name="schoolName" type="text"
+                                    placeholder="School Name" data-sb-validations="required" />
+                                <label for="">School Name</label>
+                                <div class="invalid-feedback" data-sb-feedback="schoolName:required">A school name is
+                                    required.
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="emergency" name="emergency" type="text"
+                                    placeholder="Person's name to call in emergency" data-sb-validations="required" />
+                                <label for="emergency">Person's name to call in emergency</label>
+                                <div class="invalid-feedback" data-sb-feedback="emergency:required">A name is required.
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="emergencyNumber" name="emergencyNumber" type="text"
+                                    placeholder="Emergency Number" data-sb-validations="required" />
+                                <label for="">Emergency Number</label>
+                                <div class="invalid-feedback" data-sb-feedback="emergencyNumber:required">A phone is
+                                    required.</div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select class="form-control" id="emergencyRelated" name="emergencyRelated"
+                                    data-sb-validations="required">
+                                    <option value="" disabled selected>Select Relationship</option>
+                                    <option value="father">Father</option>
+                                    <option value="mother">Mother</option>
+                                    <option value="brother">Brother</option>
+                                    <option value="sister">Sister</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <label for="emergencyRelated">This person is</label>
+                                <div class="invalid-feedback" data-sb-feedback="emergencyRelated:required">A
+                                    relationship is required.</div>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <textarea cols="30" rows="5" class="form-control" id="question1" name="question1"
+                                    type="text" placeholder="Why do you want to be a volunteer"
+                                    data-sb-validations="required">
+                                    </textarea>
+                                <label for="">Why do you want to be a volunteer</label>
+                                <div class="invalid-feedback" data-sb-feedback="question1:required">An answer is
+                                    required.
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea cols="30" rows="5" class="form-control" id="question2" name="question2"
+                                    type="text" placeholder="State your other volunteering experiences"
+                                    data-sb-validations="required">
+                                    </textarea>
+                                <label for="">State your other volunteering experiences</label>
+                                <div class="invalid-feedback" data-sb-feedback="question2:required">An answer is
+                                    required.
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea cols="30" rows="5" class="form-control" id="question3" name="question3"
+                                    type="text" placeholder="What are your interests or skills we should know about?"
+                                    data-sb-validations="required">
+                                    </textarea>
+                                <label for="">What are your interests or skills we should know about?</label>
+                                <div class="invalid-feedback" data-sb-feedback="question3:required">An answer is
+                                    required.
+                                </div>
+                            </div>
+
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="checkbox" name="checkbox"
+                                    data-sb-validations="required">
+                                <label class="form-check-label" for="checkbox">
+                                    I declare all the information here is valid
+                                </label>
+                                <div class="invalid-feedback" data-sb-feedback="checkbox:required">Confirm the
+                                    information.</div>
+                            </div>
+
+
+                            <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton"
+                                    type="submit">Submit</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+
+</html>
+
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+        event.preventDefault(); 
+
+        let isValid = true;
+
+        const requiredFields = [
+            'firstName', 'lastName', 'parentFirstName', 'parentLastName',
+            'email', 'phone', 'birthDate', 'educationLevel', 'schoolName',
+            'emergency', 'emergencyNumber', 'emergencyRelated', 'question1',
+            'question2', 'question3', 'checkbox'
+        ];
+
+        requiredFields.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (field.type === 'checkbox') {
+                if (!field.checked) {
+                    isValid = false;
+                }
+            } else if (field.value.trim() === '' || field.value === null) {
+                isValid = false;
+            }
+        });
+
+        if (!isValid) {
+            alert('Please fill in all required fields.');
+        } else {
+            this.submit(); 
+        }
+    });
+</script>
