@@ -21,7 +21,7 @@ const volunteerController = {
     async getAll(req, res) {
         try {
             const volunteers = await volunteerService.getAll();
-            res.render('volunteerAd',{ volunteers:volunteers });
+            res.render('adminContext/volunteerAd',{ volunteers:volunteers });
         } catch (error) {
 
         }
@@ -30,7 +30,8 @@ const volunteerController = {
         try {
             const { id } = req.params;
             await volunteerService.delete(id);
-            res.render('');
+            const volunteers = await volunteerService.getAll();
+            res.render('adminContext/volunteerAd',{ volunteers:volunteers });
         } catch (error) {
 
         }
