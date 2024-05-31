@@ -121,11 +121,13 @@ app.get('/adminPanel',authMiddleware,(req, res) => {
     res.render('adminContext/adminPanel')
 });
 
-// Roteador dinâmico com middleware de autenticação
+// Roteador dinâmico sem middleware de autenticação
 app.use('/access', loginRouter);
+app.use('/user', userRouter);
+
+// Roteador dinâmico com middleware de autenticação
 app.use('/volunteerAd',authMiddleware,volunteerRouter);
 app.use('/grade', authMiddleware, gradeRouter);
-app.use('/user', authMiddleware, userRouter);
 app.use('/contactAd', authMiddleware, contactRouter);
 app.use('/logout', authMiddleware, logoutRouter);
 

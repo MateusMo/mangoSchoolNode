@@ -16,6 +16,10 @@ const verifyLogin = async( email, password) => {
     return response;
 };
 
+const isNewUserPassword = async(email,password) =>{
+    return await loginRepository.isNewUserPassword(email,password);
+};
+
 // Função para verificar se uma string contém código SQL
 const containsSQLInjection = (str) => {
     // Expressão regular para verificar caracteres de código SQL
@@ -23,4 +27,4 @@ const containsSQLInjection = (str) => {
     return sqlPattern.test(str);
 };
 
-module.exports = { verifyLogin };
+module.exports = { verifyLogin, isNewUserPassword };

@@ -20,6 +20,19 @@ const post = async (userData) => {
     }
 }
 
+const update = async (userData) => {
+    try {
+        const user = await findByEmail(userData.email);
+        user.password = userData.password;
+        const id = userData.id;
+        await User.destroy({ where: { id } });
+        await post(userData);
+        return true;
+    } catch (error) {
+        
+    }
+}
+
 const put = async (req, res) => {
     const { id } = req.params;
     const { email, password, name } = req.body;
@@ -63,4 +76,4 @@ const findByEmail = async (email) => {
     }
 }
 
-module.exports = { get, post, put, deleteUser, getUsers,findByEmail };
+module.exports = { get, post, put, deleteUser, getUsers,findByEmail,update };

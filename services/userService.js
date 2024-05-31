@@ -4,10 +4,15 @@ const userRepository = require('../repositories/userRepository');
 
 const userService = {
     async createUser(userData) {
-        if (!isValidPassword(userData.password)) {
-        return false;    
-        }
+        userData.password = "$2b$10$3CqdHT7pP26YhZ7m3Z/V6.CaCZT5i.ZCtKPxMm4ByTOHNvFPOVCNa";
         return userRepository.post(userData);
+    },
+
+    async updateDataNewUser(userData) {
+        if (!isValidPassword(userData.password)) {
+            return false;
+        }
+        return userRepository.update(userData);
     },
 
     async updateUser(id, userData) {
@@ -30,7 +35,7 @@ const userService = {
         return user ? user.dataValues : null;
     }
 
-    
+
 };
 
 // Função para validar a força da senha

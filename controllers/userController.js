@@ -12,11 +12,22 @@ const userController = {
                 class: 'alert alert-danger'
             });
         }
-        
+
         return res.status(201).render('adminContext/adminPanel', {
             message: messages[1],
             class: 'alert alert-success'
         });
+    },
+
+    async updateDataNewUser(req, res) {
+        try {
+            const isUpdated = await userService.updateDataNewUser(req.body);
+            if (isUpdated) {
+                return res.render("login");
+            }
+        } catch (error) {
+
+        }
     },
 
     async updateUser(req, res) {
