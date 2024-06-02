@@ -24,7 +24,7 @@ const update = async (userData) => {
     try {
         const user = await findByEmail(userData.email);
         user.password = userData.password;
-        const id = userData.id;
+        const id = user.id;
         await User.destroy({ where: { id } });
         await post(userData);
         return true;

@@ -19,7 +19,7 @@ const gradeRepository = {
         const { rows: grades, count } = await Grade.findAndCountAll({
             limit: limit,
             offset: offset,
-            order: [['date', 'DESC']]
+            order: [['createdAt', 'DESC']]
         });
         return { grades, count };
     }
