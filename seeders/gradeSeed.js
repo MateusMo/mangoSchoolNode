@@ -9,7 +9,7 @@ module.exports = {
             const studentId = i + 1;
             grades.push({
                 studentName: `Student ${studentId}`,
-                subjectName: ['Math', 'Science', 'History', 'Geography', 'English'][studentId % 5],
+                className: ['Math', 'Science', 'History', 'Geography', 'English'][studentId % 5],
                 date: new Date(currentDate.getTime() + (i * 60 * 60 * 1000)), // Incremental dates
                 arith: Math.floor(Math.random() * 100),
                 kus: Math.floor(Math.random() * 100),
