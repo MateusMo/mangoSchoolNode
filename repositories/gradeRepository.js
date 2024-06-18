@@ -4,15 +4,19 @@ const { Grade } = require('../models');
 
 const gradeRepository = {
     async create(gradeData) {
-        return Grade.create(gradeData);
+        return await Grade.create(gradeData);
     },
 
     async update(id, gradeData) {
-        return Grade.update(gradeData, { where: { id } });
+        return await Grade.update(gradeData, { where: { id } });
     },
 
     async delete(id) {
-        return Grade.destroy({ where: { id } });
+        return await Grade.destroy({ where: { id } });
+    },
+
+    async getGradeById(id) {
+        return await Grade.findOne({ where: { id } });
     },
 
     async findAllWithPagination(limit, offset) {

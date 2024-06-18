@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<main class="flex-shrink-0">
+    <!-- Page content-->
+    <section class="py-5">
+        <div class="container px-5">
+            <!-- Contact form-->
+            <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+                <div class="text-center mb-5">
+                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i>
+                    </div>
+                    <h1 class="fw-bolder">Update Grade</h1>
+                    <p class="lead fw-normal text-muted mb-0">Update the grade below</p>
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6">
+                        <form action="/grade/update/{{grade.id}}" method="POST" id="updateGradeForm">
+                            <!-- Form inputs-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="studentName" type="text" placeholder="Student Name"
+                                    data-sb-validations="required,studentName" name="studentName" value="{{grade.studentName}}" />
+                                <label for="studentName">Student Name</label>
+                                <div class="invalid-feedback" data-sb-feedback="studentName:required">A text is
+                                    required.
+                                </div>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="className" type="text" placeholder="Class Name"
+                                    data-sb-validations="required,className" name="className" value="{{grade.className}}" />
+                                <label for="className">Class Name</label>
+                                <div class="invalid-feedback" data-sb-feedback="className:required">A text is
+                                    required.
+                                </div>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="date" type="date" placeholder="Grade Date"
+                                    data-sb-validations="required,date" name="date" value="{{grade.date}}" />
+                                <label for="date">Grade Date</label>
+                                <div class="invalid-feedback" data-sb-feedback="date:required">A text is required.
+                                </div>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="arith" type="text" placeholder="Arith"
+                                    data-sb-validations="required,arith" name="arith" value="{{grade.arith}}" />
+                                <label for="arith">Arith</label>
+                                <div class="invalid-feedback" data-sb-feedback="arith:required">A text is required.
+                                </div>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="kus" type="text" placeholder="Kus"
+                                    data-sb-validations="required,kus" name="kus" value="{{grade.kus}}" />
+                                <label for="kus">Kus</label>
+                                <div class="invalid-feedback" data-sb-feedback="kus:required">A text is required.
+                                </div>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="he" type="text" placeholder="He"
+                                    data-sb-validations="required,he" name="he" value="{{grade.he}}" />
+                                <label for="he">He</label>
+                                <div class="invalid-feedback" data-sb-feedback="he:required">A text is required.
+                                </div>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="sa" type="text" placeholder="Sa"
+                                    data-sb-validations="required,sa" name="sa" value="{{grade.sa}}" />
+                                <label for="sa">Sa</label>
+                                <div class="invalid-feedback" data-sb-feedback="sa:required">A text is required.
+                                </div>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="writ" type="text" placeholder="Write"
+                                    data-sb-validations="required,writ" name="writ" value="{{grade.writ}}" />
+                                <label for="writ">Write</label>
+                                <div class="invalid-feedback" data-sb-feedback="writ:required">A text is required.
+                                </div>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="read" type="text" placeholder="Read"
+                                    data-sb-validations="required,read" name="read" value="{{grade.read}}" />
+                                <label for="read">Read</label>
+                                <div class="invalid-feedback" data-sb-feedback="read:required">A text is required.
+                                </div>
+                            </div>
+
+
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="total" type="text" placeholder="Total"
+                                    data-sb-validations="required,total" name="total" value="{{grade.total}}" />
+                                <label for="total">Total</label>
+                                <div class="invalid-feedback" data-sb-feedback="total:required">A text is required.
+                                </div>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="ave" type="text" placeholder="Ave"
+                                    data-sb-validations="required,ave" name="ave" value="{{grade.ave}}" />
+                                <label for="ave">Ave</label>
+                                <div class="invalid-feedback" data-sb-feedback="ave:required">A text is required.
+                                </div>
+                            </div>
+
+                            <!-- Submit success message-->
+                            <!---->
+                            <!-- This is what your users will see when the form-->
+                            <!-- has successfully submitted-->
+                            <div class="d-none" id="submitSuccessMessage">
+                                <div class="text-center mb-3">
+                                    <div class="fw-bolder">Form submission successful!</div>
+                                </div>
+                            </div>
+                            <!-- Submit error message-->
+                            <!---->
+                            <!-- This is what your users will see when there is-->
+                            <!-- an error submitting the form-->
+                            <div class="d-none" id="submitErrorMessage">
+                                <div class="text-center text-danger mb-3">Error sending message!</div>
+                            </div>
+                            <!-- Submit Button-->
+                            <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton"
+                                    type="submit">Submit</button></div>
+                        </form>
+                        <div class="form-floating mb-3 mt-3">
+                                <button class="btn btn-primary btn-lg w-100" id="comeBackButton">Grades</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+
+</html>
+
+<script>
+    const comeBackButton = document.getElementById("comeBackButton");
+
+    comeBackButton.addEventListener("click", function() {
+        window.location.href = "/grade";
+    });
+</script>

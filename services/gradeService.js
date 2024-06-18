@@ -9,7 +9,30 @@ const gradeService = {
     },
 
     async updateGrade(id, gradeData) {
-        return gradeRepository.update(id, gradeData);
+        const oldGrade = await this.getGradeById(id);
+        const newGrade = {
+            studentName: gradeData.studentName || oldGrade.studentName,
+            className: gradeData.className || oldGrade.className,
+            date: gradeData.date || oldGrade.date,
+            arith: gradeData.arith || oldGrade.arith,
+            kus: gradeData.kus || oldGrade.kus,
+            he: gradeData.he || oldGrade.he,
+            sa: gradeData.sa || oldGrade.sa,
+            writ: gradeData.writ || oldGrade.writ,
+            read: gradeData.read || oldGrade.read,
+            total: gradeData.total || oldGrade.total,
+            ave: gradeData.ave || oldGrade.ave,
+            updatedAt: new Date(),
+        };
+        return gradeRepository.update(id, newGrade);
+    },
+
+    async getGradeById(id){
+        let grade = await gradeRepository.getGradeById(id);
+        let dataValue = grade.dataValues;
+        const formattedDate = dataValue.date.toISOString().split('T')[0];
+        dataValue.date = formattedDate;
+        return dataValue;
     },
 
     async deleteGrade(id) {

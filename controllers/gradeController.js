@@ -20,9 +20,25 @@ const gradeController = {
     },
 
     async updateGrade(req, res) {
-        const { id } = req.params;''
-        const updatedGrade = await gradeService.updateGrade(id, req.body);
-        res.json(updatedGrade);
+        const { id } = req.params;
+        await gradeService.updateGrade(id, req.body);
+        const page = 1;
+        const { grades, totalPages } = await gradeService.getGrades(page, 50);
+        res.render('adminContext/grade', {
+            grades: grades,
+            currentPage: page,
+            totalPages: totalPages
+        });
+    },
+
+    async getGradeToUpdate(req,res){
+        try {
+            const { id } = req.params;
+            const grade = await gradeService.getGradeById(id);
+            res.render('adminContext/updateGradeForm', { grade:grade });
+        } catch (error) {
+            console.log(error)
+        }
     },
 
     async deleteGrade(req, res) {
